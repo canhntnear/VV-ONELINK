@@ -115,7 +115,7 @@
         .neon-wrapper {
             position: relative;
             border-radius: 14px;
-            padding: 3px; /* Độ dày của đường viền LED Neon */
+            padding: 3px;
             overflow: hidden;
             display: flex;
             justify-content: center;
@@ -123,7 +123,6 @@
             box-shadow: 0 4px 15px rgba(0, 113, 227, 0.15);
         }
 
-        /* Vệt màu sáng quay tròn theo chiều kim đồng hồ */
         .neon-wrapper::before {
             content: '';
             position: absolute;
@@ -141,15 +140,10 @@
         }
 
         @keyframes rotateNeon {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        /* Khung chứa nội dung đè lên vệt quay Neon */
         .contact-box {
             position: relative;
             z-index: 1;
@@ -223,10 +217,10 @@
         <!-- 3 NÚT TẢI / TRUY CẬP -->
         <div id="fallback-buttons" class="btn-group" style="display: none;">
             <a id="appstore-btn" href="https://apps.apple.com/us/app/viview-gps/id1470901283" class="btn btn-ios">
-                Tải ViView GPS trên App Store (iOS)
+                Tải trên App Store (iOS)
             </a>
             <a id="playstore-btn" href="https://play.google.com/store/apps/details?id=vn.viviewgps.gpsmobile&hl=vi" class="btn btn-android">
-                Tải ViView GPS trên Google Play (Android)
+                Tải trên Google Play (Android)
             </a>
             <a id="web-btn" href="https://dinhvi.vanphukhanh.com" class="btn btn-web">
                 Truy cập Web (Máy tính)
@@ -238,9 +232,10 @@
             <div class="contact-box">
                 <div class="contact-title">THÔNG TIN LIÊN HỆ & BẢO HÀNH</div>
                 
+                <!-- ĐÃ ĐỔI THÀNH TƯ VẤN LẮP ĐẶT -->
                 <div class="contact-item">
-                    <span><strong>LẮP ĐẶT:</strong> 0389 58 12 34</span>
-                    <a href="tel:0389581234" class="phone-link" title="Gọi ngay">📞</a>
+                    <span><strong>TƯ VẤN LẮP ĐẶT:</strong> 0854 87 12 34</span>
+                    <a href="tel:0854871234" class="phone-link" title="Gọi ngay">📞</a>
                 </div>
 
                 <div class="contact-item">
