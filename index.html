@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DINHVI.VANPHUKHANH.COM - Vạn Phú Khánh</title>
+    <link rel="icon" href="https://dinhvi.khanhhoa.vn/Images/DinhViKhanhHoa/logo.png" type="image/png">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f6f9;
+            text-align: center;
+        }
+        .card {
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            max-width: 380px;
+            width: 90%;
+            box-sizing: border-box;
+        }
+        .company-logo {
+            max-width: 180px;
+            height: auto;
+            margin-bottom: 16px;
+            object-fit: contain;
+        }
+        h1 {
+            font-size: 20px;
+            color: #1a1a1a;
+            margin: 0 0 12px 0;
+            word-break: break-all;
+        }
+        .brand-header {
+            font-size: 15px;
+            color: #d32f2f;
+            font-weight: bold;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+        .status-text {
+            color: #0071e3;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            color: #ffffff;
+            transition: background-color 0.2s ease;
+        }
+        .btn-ios {
+            background-color: #000000;
+        }
+        .btn-android {
+            background-color: #01875f;
+        }
+        .btn-web {
+            background-color: #0071e3;
+        }
+        .contact-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #333333;
+        }
+        .contact-title {
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        .contact-item {
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-item strong {
+            color: #000000;
+        }
+        .address-item {
+            margin-bottom: 6px;
+        }
+        .address-item a {
+            color: #0071e3;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .phone-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #28a745;
+            color: #ffffff;
+            text-decoration: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+        .phone-link:active {
+            transform: scale(0.92);
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- Logo Vạn Phú Khánh -->
+        <img src="https://dinhvi.khanhhoa.vn/Images/DinhViKhanhHoa/logo.png" alt="Vạn Phú Khánh Logo" class="company-logo">
+        
+        <h1>DINHVI.VANPHUKHANH.COM</h1>
+        
+        <div class="brand-header">Vạn Phú Khánh thông báo:</div>
+        <div id="status-text" class="status-text">Đang tự động chuyển hướng bạn...</div>
+
+        <!-- 3 NÚT TẢI / TRUY CẬP (Cập nhật app ViView GPS mới) -->
+        <div id="fallback-buttons" class="btn-group" style="display: none;">
+            <a id="appstore-btn" href="https://apps.apple.com/us/app/viview-gps/id1470901283" class="btn btn-ios">
+                Tải ViView GPS trên App Store (iOS)
+            </a>
+            <a id="playstore-btn" href="https://play.google.com/store/apps/details?id=vn.viviewgps.gpsmobile&hl=vi" class="btn btn-android">
+                Tải ViView GPS trên Google Play (Android)
+            </a>
+            <a id="web-btn" href="https://dinhvi.khanhhoa.vn/Logins/Login_DinhViKhanhHoa.aspx" class="btn btn-web">
+                Truy cập Web (Máy tính)
+            </a>
+        </div>
+
+        <!-- THÔNG TIN LIÊN HỆ & BẢO HÀNH -->
+        <div class="contact-box">
+            <div class="contact-title">THÔNG TIN LIÊN HỆ & BẢO HÀNH</div>
+            
+            <div class="contact-item">
+                <span><strong>LẮP ĐẶT:</strong> 0389 58 12 34</span>
+                <a href="tel:0389581234" class="phone-link" title="Gọi ngay">📞</a>
+            </div>
+
+            <div class="contact-item">
+                <span><strong>BẢO HÀNH - GIA HẠN:</strong> 0397 08 12 34</span>
+                <a href="tel:0397081234" class="phone-link" title="Gọi ngay">📞</a>
+            </div>
+
+            <div class="contact-item">
+                <span><strong>GÓP Ý DỊCH VỤ:</strong> 0585 114 114</span>
+                <a href="tel:0585114114" class="phone-link" title="Gọi ngay">📞</a>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #e0e0e0; margin: 8px 0;">
+
+            <div class="address-item"><strong>VPGD:</strong> 101 CT1A, KĐT Phước Long, Nam Nha Trang, Khánh Hòa</div>
+            <div class="address-item"><strong>Website:</strong> <a href="https://vanphukhanh.com" target="_blank">vanphukhanh.com</a></div>
+        </div>
+    </div>
+
+    <script>
+        // CẬP NHẬT LINK ỨNG DỤNG VIVIEW GPS MỚI
+        const APP_STORE_URL = "https://apps.apple.com/us/app/viview-gps/id1470901283";
+        const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=vn.viviewgps.gpsmobile&hl=vi";
+        const WEB_LOGIN_URL = "https://dinhvi.khanhhoa.vn/Logins/Login_DinhViKhanhHoa.aspx";
+
+        function redirectUser() {
+            // Hiển thị 3 nút bấm dự phòng
+            document.getElementById("fallback-buttons").style.display = "flex";
+
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+            // Nếu truy cập bằng iOS (iPhone/iPad)
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang App Store...";
+                setTimeout(() => {
+                    window.location.href = APP_STORE_URL;
+                }, 1500);
+                return;
+            }
+
+            // Nếu truy cập bằng Android
+            if (/android/i.test(userAgent)) {
+                document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang Google Play...";
+                setTimeout(() => {
+                    window.location.href = PLAY_STORE_URL;
+                }, 1500);
+                return;
+            }
+
+            // Nếu truy cập bằng Máy tính (PC / Laptop)
+            document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang Web Đăng Nhập...";
+            setTimeout(() => {
+                window.location.href = WEB_LOGIN_URL;
+            }, 1500);
+        }
+
+        window.onload = redirectUser;
+    </script>
+</body>
+</html>
