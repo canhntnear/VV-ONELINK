@@ -49,6 +49,7 @@
             font-size: 14px;
             font-weight: 500;
             margin-bottom: 20px;
+            min-height: 20px;
         }
         .btn-group {
             display: flex;
@@ -136,7 +137,12 @@
                 #d32f2f 75%,
                 transparent 100%
             );
-            animation: rotateNeon 3s linear infinite;
+            animation: rotateNeon 5s linear infinite;
+        }
+
+        /* Dừng animation khi chuyển hướng */
+        .neon-wrapper.redirecting::before {
+            animation: none;
         }
 
         @keyframes rotateNeon {
@@ -201,6 +207,20 @@
             transform: scale(0.92);
             background-color: #218838;
         }
+
+        /* Thông báo lỗi */
+        .error-message {
+            color: #d32f2f;
+            font-size: 13px;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #ffebee;
+            border-radius: 8px;
+            display: none;
+        }
+        .error-message.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -215,7 +235,7 @@
         <div id="status-text" class="status-text">Đang tự động chuyển hướng bạn...</div>
 
         <!-- 3 NÚT TẢI / TRUY CẬP -->
-        <div id="fallback-buttons" class="btn-group" style="display: none;">
+        <div id="fallback-buttons" class="btn-group">
             <a id="appstore-btn" href="https://apps.apple.com/us/app/viview-gps/id1470901283" class="btn btn-ios">
                 Tải trên App Store (iOS)
             </a>
@@ -227,8 +247,13 @@
             </a>
         </div>
 
+        <!-- Thông báo lỗi nếu chuyển hướng thất bại -->
+        <div id="error-message" class="error-message">
+            ⚠️ Không thể tự động chuyển hướng. Vui lòng chọn nút phía trên để tiếp tục.
+        </div>
+
         <!-- BẢNG THÔNG TIN LIÊN HỆ VIỀN LED NEON CHẠY XOAY THEO CHIỀU KIM ĐỒNG HỒ -->
-        <div class="neon-wrapper">
+        <div id="neon-wrapper" class="neon-wrapper">
             <div class="contact-box">
                 <div class="contact-title">THÔNG TIN LIÊN HỆ & BẢO HÀNH</div>
                 
@@ -237,7 +262,6 @@
                     <a href="tel:0854871234" class="phone-link" title="Gọi ngay">📞</a>
                 </div>
 
-                <!-- ĐÃ ĐỔI SỐ BẢO HÀNH - GIA HẠN THÀNH 0588 588 114 -->
                 <div class="contact-item">
                     <span><strong>BẢO HÀNH - GIA HẠN:</strong> 0588 588 114</span>
                     <a href="tel:0588588114" class="phone-link" title="Gọi ngay">📞</a>
@@ -260,32 +284,41 @@
         const APP_STORE_URL = "https://apps.apple.com/us/app/viview-gps/id1470901283";
         const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=vn.viviewgps.gpsmobile&hl=vi";
         const WEB_LOGIN_URL = "https://dinhvi.vanphukhanh.com";
+        const REDIRECT_DELAY = 1500; // 1.5 giây
+        const FALLBACK_TIMEOUT = 2000; // 2 giây - nếu chuyển hướng thất bại sẽ hiển thị lỗi
 
         function redirectUser() {
-            document.getElementById("fallback-buttons").style.display = "flex";
-
             const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            let redirectUrl = WEB_LOGIN_URL;
 
+            // Dừng animation neon khi chuyển hướng
+            document.getElementById("neon-wrapper").classList.add("redirecting");
+
+            // Xác định URL dựa trên thiết bị
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
                 document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang App Store...";
-                setTimeout(() => {
-                    window.location.href = APP_STORE_URL;
-                }, 1500);
-                return;
-            }
-
-            if (/android/i.test(userAgent)) {
+                redirectUrl = APP_STORE_URL;
+            } else if (/android/i.test(userAgent)) {
                 document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang Google Play...";
-                setTimeout(() => {
-                    window.location.href = PLAY_STORE_URL;
-                }, 1500);
-                return;
+                redirectUrl = PLAY_STORE_URL;
+            } else {
+                document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang Web Đăng Nhập...";
+                redirectUrl = WEB_LOGIN_URL;
             }
 
-            document.getElementById("status-text").innerText = "Đang tự động chuyển hướng sang Web Đăng Nhập...";
+            // Thực hiện chuyển hướng
             setTimeout(() => {
-                window.location.href = WEB_LOGIN_URL;
-            }, 1500);
+                window.location.href = redirectUrl;
+            }, REDIRECT_DELAY);
+
+            // Fallback: Nếu chuyển hướng thất bại sau 2 giây, hiển thị thông báo lỗi
+            setTimeout(() => {
+                // Kiểm tra nếu vẫn còn ở trang hiện tại (chuyển hướng thất bại)
+                if (document.readyState !== "complete") {
+                    document.getElementById("error-message").classList.add("show");
+                    document.getElementById("status-text").innerText = "Chuyển hướng thất bại. Vui lòng chọn nút bên dưới.";
+                }
+            }, FALLBACK_TIMEOUT);
         }
 
         window.onload = redirectUser;
