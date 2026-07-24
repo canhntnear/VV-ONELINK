@@ -56,7 +56,12 @@
             gap: 10px;
             margin-bottom: 20px;
         }
+        
+        /* ---------------------------------------------------- */
+        /* NÚT BẤM VÀ HIỆU ỨNG QUÉT MÀU TUẦN TỰ (0.5S/NÚT) */
+        /* ---------------------------------------------------- */
         .btn {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,8 +71,54 @@
             font-weight: 600;
             font-size: 14px;
             color: #ffffff;
-            transition: background-color 0.2s ease;
+            overflow: hidden; /* Dùng để chứa vệt sáng chạy qua */
+            transition: transform 0.2s ease;
         }
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Tạo vệt sáng quét chéo */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 60%;
+            height: 200%;
+            background: linear-gradient(
+                90deg, 
+                rgba(255, 255, 255, 0) 0%, 
+                rgba(255, 255, 255, 0.45) 50%, 
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(25deg);
+            animation: sweep 1.5s infinite linear;
+        }
+
+        /* Khung thời gian quét: Nút 1 -> Nút 2 -> Nút 3 (Tổng vòng lặp 1.5s) */
+        #appstore-btn::after {
+            animation-delay: 0s;     /* Quét từ 0.0s - 0.5s */
+        }
+        #playstore-btn::after {
+            animation-delay: 0.5s;   /* Quét từ 0.5s - 1.0s */
+        }
+        #web-btn::after {
+            animation-delay: 1.0s;   /* Quét từ 1.0s - 1.5s */
+        }
+
+        @keyframes sweep {
+            0% {
+                left: -150%;
+            }
+            33.33% {
+                left: 150%; /* Hoàn thành 1 lượt quét trong 0.5s */
+            }
+            100% {
+                left: 150%; /* Chờ cho các nút tiếp theo chạy xong vòng */
+            }
+        }
+
         .btn-ios {
             background-color: #000000;
         }
@@ -77,6 +128,8 @@
         .btn-web {
             background-color: #0071e3;
         }
+        /* ---------------------------------------------------- */
+
         .contact-box {
             background-color: #f8f9fa;
             border: 1px solid #e9ecef;
@@ -143,7 +196,7 @@
         <div class="brand-header">Vạn Phú Khánh thông báo:</div>
         <div id="status-text" class="status-text">Đang tự động chuyển hướng bạn...</div>
 
-        <!-- 3 NÚT TẢI / TRUY CẬP (Cập nhật app ViView GPS mới) -->
+        <!-- 3 NÚT TẢI / TRUY CẬP (Có hiệu ứng lướt sáng tuần tự) -->
         <div id="fallback-buttons" class="btn-group" style="display: none;">
             <a id="appstore-btn" href="https://apps.apple.com/us/app/viview-gps/id1470901283" class="btn btn-ios">
                 Tải ViView GPS trên App Store (iOS)
@@ -183,7 +236,6 @@
     </div>
 
     <script>
-        // CẬP NHẬT LINK ỨNG DỤNG VIVIEW GPS MỚI
         const APP_STORE_URL = "https://apps.apple.com/us/app/viview-gps/id1470901283";
         const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=vn.viviewgps.gpsmobile&hl=vi";
         const WEB_LOGIN_URL = "https://dinhvi.khanhhoa.vn/Logins/Login_DinhViKhanhHoa.aspx";
